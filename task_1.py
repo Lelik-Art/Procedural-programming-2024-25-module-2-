@@ -59,6 +59,7 @@ class PaperBook(Book):
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super(AudioBook, self).__init__(name, author)
+        duration = None
         set_duration(duration)
 
     def set_duration(self, new_duration:  int):
