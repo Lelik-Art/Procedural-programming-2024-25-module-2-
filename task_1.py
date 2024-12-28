@@ -32,7 +32,7 @@ class Book:
         return f"Книга {self.name}. Автор {self.author}"
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r})"
+        return f"name={self.name!r}, author={self.author!r}"
 
 
 class PaperBook(Book):
@@ -59,14 +59,18 @@ class PaperBook(Book):
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super(AudioBook, self).__init__(name, author)
-        self.duration = duration
+        set_duration(duration)
 
-    def set_duration(self, pages:  int):
-        if not isinstance(duration, int) and not isinstance(duration, float):
+    def set_duration(self, new_duration:  int):
+        if not isinstance(new_duration, int) and not isinstance(duration, float):
             raise TypeError("Продолжительность записи должна иметь тип int")
-        if duration < 0:
+        elif new_duration < 0:
             raise ValueError(
                 "Продолжительность записи не должна быть отрицательным")
+        else:
+            self.duration = new_duration
+
+        
 
     def __str__(self):
         return f"{super().__str__()}, продолжительность записи: {self.duration}"
